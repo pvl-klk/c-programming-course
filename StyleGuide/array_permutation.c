@@ -18,7 +18,7 @@ int main(void) {
     printf("Result: ");
     printArray(length, array);
 
-    return 1;
+    return 0;
 }
 
 void printArray(const int length, const int* array) {
