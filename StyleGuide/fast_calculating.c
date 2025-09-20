@@ -13,5 +13,5 @@ int main(void) {
     const int result = d + 1;
     printf("Result: %d\n", result);
     
-    return 1;
+    return 0;
 }
