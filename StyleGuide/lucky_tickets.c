@@ -6,7 +6,7 @@ int main(void) {
     int numberOfLuckyTickets = countLuckyTickets();
     printf("Number of lucky tickets is %d\n", numberOfLuckyTickets);
 
-    return 1;
+    return 0;
 }
 
 int countLuckyTickets(void) {
