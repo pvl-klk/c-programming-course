@@ -6,7 +6,7 @@ int integerDivision(int, int);
 int main(void) {
     printf("%d", integerDivision(101, 4));
 
-    return 1;
+    return 0;
 }
 
 int integerDivision(const int a, const int b) {
