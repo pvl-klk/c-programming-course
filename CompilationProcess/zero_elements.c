@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main(void) {
-    int array[] = { 1, 0, 4, 0, 0, 2, 0, 1, 0, 5 };
-    int length = 10;
+    const int array[] = { 1, 0, 4, 0, 0, 2, 0, 1, 0, 5 };
+    const int length = 10;
 
     int counter = 0;
     for (int index = 0; index < length; ++index) {
