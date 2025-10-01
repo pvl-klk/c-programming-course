@@ -2,24 +2,22 @@
 #include <stdbool.h>
 #include <string.h>
 
-bool isBalanced(char*);
+bool isBalanced(const char*);
 
 int main(void) {
-    char* string;
-    printf("Enter a string: ");
-    scanf("%s", string);
+    const char* string = "()(())()()";
 
-    bool isStringBalanced = isBalanced(string);
-    
+    const bool isStringBalanced = isBalanced(string);
+
     printf("String is%sbalanced\n", isStringBalanced ? " " : " not ");
 
     return 0;
 }
 
-bool isBalanced(char* string) {
+bool isBalanced(const char* string) {
     int open_braces_number = 0;
     for (int index = 0; index < strlen(string); ++index) {
-        char symbol = string[index];
+        const char symbol = string[index];
         if (symbol == '(') {
             ++open_braces_number;
         }
@@ -33,8 +31,6 @@ bool isBalanced(char* string) {
     if (open_braces_number == 0) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
