@@ -1,10 +1,7 @@
+#include "stack.h"
+
 #include <stdlib.h>
 #include <stdio.h>
-
-typedef struct StackStruct {
-    void * value;
-    struct StackStruct *previous;
-} Stack;
 
 Stack* stackNew() {
     Stack* stack = malloc(sizeof(Stack));
@@ -20,25 +17,38 @@ Stack* stackNew() {
 void stackPush(Stack** stack, void* value) {
     if (stack == NULL || *stack == NULL) {
         puts("Incorrect arguments error");
+        return;
     }
     Stack* stackTop = malloc(sizeof(Stack));
     if (stackTop == NULL) {
         puts("Memory allocation error");
+        return;
     }
     stackTop -> value = value;
-    stackTop -> previous = stack;
-
+    stackTop -> previous = *stack;
+    *stack = stackTop;
 }
 
-Stack* stackPop(Stack* stack) {
-    if (stack == NULL) {
+void stackPop(Stack** stack) {
+    if (stack == NULL || *stack == NULL) {
         puts("Incorrect arguments error");
-        return NULL;
+        return;
     }
-    Stack* stackTop = stack -> previous;
+    Stack* stackTop = (*stack) -> previous;
     if (stackTop != NULL) {
-        free(stack);
-        return stackTop;
+        free(*stack);
+        *stack = stackTop;
     }
-    return stack;
+}
+
+void stackFree(Stack** stack) {
+    if (stack == NULL || *stack == NULL) {
+        puts("Incorrect arguments error");
+        return;
+    }
+    while ((*stack)->previous != NULL) {
+        stackPop(stack);
+    }
+    free(*stack);
+    *stack = NULL;
 }
