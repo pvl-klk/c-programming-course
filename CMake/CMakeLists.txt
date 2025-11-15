@@ -9,4 +9,10 @@ add_library(mylib STATIC
     Stack/stack.c
 )
 
+if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options(-Wall -Wextra -Wpedantic)
+elseif(CMAKE_C_COMPILER_ID MATCHES "MSVC")
+    add_compile_options(/W4)
+endif()
+
 target_include_directories(mylib PUBLIC . Stack)
