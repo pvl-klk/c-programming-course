@@ -93,7 +93,7 @@ Status listArrayPrint(const ListArray* listArray) {
     if (listArray == NULL) {
         return NULL_POINTER_ARGUMENT_ERROR;
     }
-    printf("{ ", listArray -> size);
+    printf("{ ");
     for (unsigned int index = 0; index < listArray -> size; ++index) {
         printf("%d ", listArray -> data[index]);
     }
