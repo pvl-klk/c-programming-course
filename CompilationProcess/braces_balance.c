@@ -1,10 +1,11 @@
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <string.h>
 
 bool isBalanced(const char*);
 
-int main(void) {
+int main(void)
+{
     const char* string = "()(())()()";
 
     const bool isStringBalanced = isBalanced(string);
@@ -14,14 +15,14 @@ int main(void) {
     return 0;
 }
 
-bool isBalanced(const char* string) {
+bool isBalanced(const char* string)
+{
     int open_braces_number = 0;
     for (int index = 0; index < strlen(string); ++index) {
         const char symbol = string[index];
         if (symbol == '(') {
             ++open_braces_number;
-        }
-        else if (symbol == ')') {
+        } else if (symbol == ')') {
             --open_braces_number;
         }
         if (open_braces_number < 0) {
@@ -33,4 +34,3 @@ bool isBalanced(const char* string) {
     }
     return false;
 }
-

@@ -1,15 +1,17 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 int integerDivision(int, int);
 
-int main(void) {
+int main(void)
+{
     printf("%d", integerDivision(101, 4));
 
     return 0;
 }
 
-int integerDivision(const int a, const int b) {
+int integerDivision(const int a, const int b)
+{
     const int sign = a * b < 0 ? -1 : 1;
 
     int absoluteA = abs(a);

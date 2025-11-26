@@ -2,14 +2,16 @@
 
 int countLuckyTickets(void);
 
-int main(void) {
+int main(void)
+{
     int numberOfLuckyTickets = countLuckyTickets();
     printf("Number of lucky tickets is %d\n", numberOfLuckyTickets);
 
     return 0;
 }
 
-int countLuckyTickets(void) {
+int countLuckyTickets(void)
+{
     int result = 0;
     for (int i_1 = 0; i_1 <= 9; ++i_1) {
         for (int i_2 = 0; i_2 <= 9; ++i_2) {

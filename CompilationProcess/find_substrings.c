@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(void) {
+int main(void)
+{
     const char* string = "1301020301010203";
     const char* substring = "01";
 
@@ -26,4 +27,3 @@ int main(void) {
 
     return 0;
 }
-
