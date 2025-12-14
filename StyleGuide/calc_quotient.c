@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-int calcQuotient(const int a, const int b) {
+int calcQuotient(const int a, const int b)
+{
     if (b == 0) {
         puts("ERROR: DIVISION BY ZERO");
         return 0;
@@ -20,7 +21,8 @@ int calcQuotient(const int a, const int b) {
     return result;
 }
 
-int main() {
+int main()
+{
     printf("%d\n", calcQuotient(-7, -2)); // 3
     printf("%d\n", calcQuotient(7, 2)); // 3
     printf("%d\n", calcQuotient(-7, 2)); // -3
