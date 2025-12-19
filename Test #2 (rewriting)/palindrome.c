@@ -75,6 +75,21 @@ int listGetValueByIndex(List* list, unsigned int index) {
     exit(1);
 }
 
+void listDestroy(List* list) {
+    if (list == NULL) {
+        return;
+    }
+
+    Node* current = list->first;
+    while (current != NULL) {
+        Node* next = current->next;
+        free(current);
+        current = next;
+    }
+    
+    free(list);
+}
+
 int main(void) {
     List* list = listCreate();
     puts("Enter the numbers (Enter Ctrl+D/Ctrl+Z to exit): ");
@@ -93,6 +108,8 @@ int main(void) {
         }
     }
     puts("List is symmetric");
+
+    listDestroy(list);
 
     return 0;
 }
