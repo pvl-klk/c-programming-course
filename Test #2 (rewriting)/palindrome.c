@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct NodeStruct {
     struct NodeStruct* next;
@@ -12,23 +12,26 @@ typedef struct {
     Node* last;
 } List;
 
-void listCheckInvariant(List* list) {
-    assert((list -> first == NULL) == (list -> last == NULL));
+void listCheckInvariant(List* list)
+{
+    assert((list->first == NULL) == (list->last == NULL));
 }
 
-List* listCreate(void) {
+List* listCreate(void)
+{
     List* list = malloc(sizeof(List));
     if (list == NULL) {
         puts("Memory allocation error");
         exit(1);
     }
 
-    list -> first = NULL;
-    list -> last = NULL;
+    list->first = NULL;
+    list->last = NULL;
     return list;
 }
 
-void listAppend(List* list, int value) {
+void listAppend(List* list, int value)
+{
     if (list == NULL) {
         puts("NULL pointer provided");
         exit(1);
@@ -41,19 +44,19 @@ void listAppend(List* list, int value) {
         exit(1);
     }
 
-    node -> value = value;
-    node -> next = NULL;
+    node->value = value;
+    node->next = NULL;
 
-    if (list -> first == NULL) {
-        list -> first = node;
+    if (list->first == NULL) {
+        list->first = node;
+    } else {
+        list->last->next = node;
     }
-    else {
-        list -> last -> next = node;
-    }
-    list -> last = node;
+    list->last = node;
 }
 
-int listGetValueByIndex(List* list, unsigned int index) {
+int listGetValueByIndex(List* list, unsigned int index)
+{
     if (list == NULL) {
         puts("NULL pointer provided");
         exit(1);
@@ -61,21 +64,22 @@ int listGetValueByIndex(List* list, unsigned int index) {
     listCheckInvariant(list);
 
     unsigned int currentIndex = 0;
-    Node* current = list -> first;
-    while (current -> next != NULL && currentIndex != index) {
-        current = current -> next;
+    Node* current = list->first;
+    while (current->next != NULL && currentIndex != index) {
+        current = current->next;
         ++currentIndex;
     }
 
     if (currentIndex == index) {
-        return current -> value;
+        return current->value;
     }
-    
+
     puts("Index out of range");
     exit(1);
 }
 
-void listDestroy(List* list) {
+void listDestroy(List* list)
+{
     if (list == NULL) {
         return;
     }
@@ -86,11 +90,12 @@ void listDestroy(List* list) {
         free(current);
         current = next;
     }
-    
+
     free(list);
 }
 
-int main(void) {
+int main(void)
+{
     List* list = listCreate();
     puts("Enter the numbers (Enter Ctrl+D/Ctrl+Z to exit): ");
 
@@ -102,7 +107,7 @@ int main(void) {
     }
 
     for (int index = 0; index < length / 2; ++index) {
-        if (listGetValueByIndex(list, index) != listGetValueByIndex(list, length-1-index)) {
+        if (listGetValueByIndex(list, index) != listGetValueByIndex(list, length - 1 - index)) {
             puts("List is not symmetric");
             return 0;
         }
