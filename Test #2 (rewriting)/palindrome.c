@@ -75,13 +75,24 @@ int listGetValueByIndex(List* list, unsigned int index) {
     exit(1);
 }
 
-
-
 int main(void) {
     List* list = listCreate();
-    listAppend(list, 10);
-    listAppend(list, 100);
-    listAppend(list, 1000);
-    printf("%d", listGetValueByIndex(list, 2));
+    puts("Enter the numbers (Enter Ctrl+D/Ctrl+Z to exit): ");
 
+    int length = 0;
+    int number;
+    while (scanf("%d", &number) == 1) {
+        listAppend(list, number);
+        ++length;
+    }
+
+    for (int index = 0; index < length / 2; ++index) {
+        if (listGetValueByIndex(list, index) != listGetValueByIndex(list, length-1-index)) {
+            puts("List is not symmetric");
+            return 0;
+        }
+    }
+    puts("List is symmetric");
+
+    return 0;
 }
