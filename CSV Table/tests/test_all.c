@@ -1,12 +1,13 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <assert.h>
 #include "../src/csv_processor.h"
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int compareFiles(const char* pathToFile_1, const char* pathToFile_2) {
-    FILE *file_1 = fopen(pathToFile_1, "r");
-    FILE *file_2 = fopen(pathToFile_2, "r");
-    
+int compareFiles(const char* pathToFile_1, const char* pathToFile_2)
+{
+    FILE* file_1 = fopen(pathToFile_1, "r");
+    FILE* file_2 = fopen(pathToFile_2, "r");
+
     if (!file_1 || !file_2) {
         puts("File opening error");
         if (file_1 != NULL) {
@@ -17,20 +18,20 @@ int compareFiles(const char* pathToFile_1, const char* pathToFile_2) {
         }
         return 0;
     }
-    
+
     int result = 1;
     int char_1, char_2;
-    
+
     while (1) {
         char_1 = fgetc(file_1);
         char_2 = fgetc(file_2);
-        
+
         // Оба файла закончились одновременно
         if (char_1 == EOF && char_2 == EOF) {
             // Файлы идентичны
             break;
         }
-        
+
         // Первый файл закончился
         if (char_1 == EOF && char_2 != EOF) {
             // Проверяем, не идут ли во втором только \n
@@ -45,7 +46,7 @@ int compareFiles(const char* pathToFile_1, const char* pathToFile_2) {
                 break;
             }
         }
-        
+
         // Второй файл закончился
         if (char_1 != EOF && char_2 == EOF) {
             // Проверяем, не идут ли в первом только \n
@@ -60,23 +61,24 @@ int compareFiles(const char* pathToFile_1, const char* pathToFile_2) {
                 break;
             }
         }
-        
+
         // Символы разные
         if (char_1 != char_2) {
             result = 0;
             break;
         }
-        
+
         // Символы одинаковые - продолжаем цикл
     }
-    
+
     fclose(file_1);
     fclose(file_2);
     return result;
 }
 
 // Тесты для вспомогательных функций
-void testIsNumber(void) {
+void testIsNumber(void)
+{
     puts("Testing isNumber function...");
     assert(isNumber("123") == 1);
     assert(isNumber("abc") == 0);
@@ -87,7 +89,8 @@ void testIsNumber(void) {
     puts("Tests of isNumber function passed!\n");
 }
 
-void testCountCommas(void) {
+void testCountCommas(void)
+{
     puts("Testing countCommas function...");
     assert(countCommas("") == 0);
     assert(countCommas("a,b,c") == 2);
@@ -97,7 +100,8 @@ void testCountCommas(void) {
 }
 
 // Тесты для главной функции
-void testProcessCSV(void) {
+void testProcessCSV(void)
+{
     puts("Testing processCSV function...\n");
 
     puts("Testing the basic case...");
@@ -134,16 +138,17 @@ void testProcessCSV(void) {
     puts("Tests of processCSV function passed!\n");
 }
 
-int main(void) {
+int main(void)
+{
     puts("Running all tests...");
     puts("====================\n");
-    
+
     testIsNumber();
     testCountCommas();
     testProcessCSV();
-    
+
     puts("====================");
     puts("All tests passed!");
-    
+
     return 0;
 }
